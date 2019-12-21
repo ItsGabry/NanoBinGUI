@@ -4,4 +4,7 @@ branches:
 projects:
   NanoBinGUI:
     path: ""
+    libs: 
+    - src: muqsit/InvMenu/InvMenu
+      version: ^2.1.0
 ...
