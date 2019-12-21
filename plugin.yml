@@ -1,0 +1,15 @@
+name: NanoBinGUI
+main: ItsGabry\NanoBin\Main
+api: 3.0.0
+version: 1.0
+author: ItsGabry
+commands:
+  bin:
+    description: Open the NanoBinGUI
+    usage: "/bin"
+    aliases: [monnezza,cestino]
+    permission: bin.command
+  permissions:
+    bin.command:
+    description: "Allows players to use the bin"
+    default: true

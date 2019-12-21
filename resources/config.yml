@@ -1,0 +1,23 @@
+#The name of the bin, next to the name of the bin there will be the name of the player
+#Il nome del cestino, accanto al nome del cestino ci sarà il nome del giocatore
+Name: Cestino di
+#The color of the bin name
+#Colore del nome del cestino
+#	DARK_BLUE 
+#	DARK_GREEN 
+#	DARK_AQUA 
+#	DARK_RED 
+#	DARK_PURPLE
+#	GOLD
+#	GRAY
+#	DARK_GRAY 
+#	BLUE
+#	GREEN
+#	AQUA
+#	RED 
+#	LIGHT_PURPLE
+#	YELLOW
+#	WHITE
+#   BLACK
+
+Color: RED
