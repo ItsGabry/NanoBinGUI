@@ -31,44 +31,53 @@ class Main extends PluginBase implements Listener {
         switch (strtolower($command->getName())) {
             case "bin":
                 if ($sender instanceof Player) {
-                    $menu = InvMenu::create(InvMenu::TYPE_CHEST);
-                    $menu->getInventory()->setContents([
-                        0 => ItemFactory::get(Item::GLASS_PANE),
-                        1 => ItemFactory::get(Item::GLASS_PANE),
-                        2 => ItemFactory::get(Item::GLASS_PANE),
-                        3 => ItemFactory::get(Item::GLASS_PANE),
-                        4 => ItemFactory::get(Item::GLASS_PANE),
-                        5 => ItemFactory::get(Item::GLASS_PANE),
-                        6 => ItemFactory::get(Item::GLASS_PANE),
-                        7 => ItemFactory::get(Item::GLASS_PANE),
-                        8 => ItemFactory::get(Item::GLASS_PANE),
-                        9 => ItemFactory::get(Item::GLASS_PANE),
-                        17 => ItemFactory::get(Item::GLASS_PANE),
-                        18 => ItemFactory::get(Item::GLASS_PANE),
-                        19 => ItemFactory::get(Item::GLASS_PANE),
-                        20 => ItemFactory::get(Item::GLASS_PANE),
-                        21 => ItemFactory::get(Item::GLASS_PANE),
-                        22 => ItemFactory::get(Item::GLASS_PANE),
-                        23 => ItemFactory::get(Item::GLASS_PANE),
-                        24 => ItemFactory::get(Item::GLASS_PANE),
-                        25 => ItemFactory::get(Item::GLASS_PANE),
-                        26 => ItemFactory::get(Item::GLASS_PANE),
-                    ]);
+                        $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+                        $menu->getInventory()->setContents([
+                            0 => ItemFactory::get(Item::GLASS_PANE),
+                            1 => ItemFactory::get(Item::GLASS_PANE),
+                            2 => ItemFactory::get(Item::GLASS_PANE),
+                            3 => ItemFactory::get(Item::GLASS_PANE),
+                            4 => ItemFactory::get(Item::GLASS_PANE),
+                            5 => ItemFactory::get(Item::GLASS_PANE),
+                            6 => ItemFactory::get(Item::GLASS_PANE),
+                            7 => ItemFactory::get(Item::GLASS_PANE),
+                            8 => ItemFactory::get(Item::GLASS_PANE),
+                            9 => ItemFactory::get(Item::GLASS_PANE),
+                            17 => ItemFactory::get(Item::GLASS_PANE),
+                            18 => ItemFactory::get(Item::GLASS_PANE),
+                            26 => ItemFactory::get(Item::GLASS_PANE),
+                            27 => ItemFactory::get(Item::GLASS_PANE),
+                            35 => ItemFactory::get(Item::GLASS_PANE),
+                            36 => ItemFactory::get(Item::GLASS_PANE),
+                            44 => ItemFactory::get(Item::GLASS_PANE),
+                            45 => ItemFactory::get(Item::GLASS_PANE),
+                            46 => ItemFactory::get(Item::GLASS_PANE),
+                            47 => ItemFactory::get(Item::GLASS_PANE),
+                            48 => ItemFactory::get(Item::GLASS_PANE),
+                            49 => ItemFactory::get(Item::GLASS_PANE),
+                            50 => ItemFactory::get(Item::GLASS_PANE),
+                            51 => ItemFactory::get(Item::GLASS_PANE),
+                            52 => ItemFactory::get(Item::GLASS_PANE),
+                            53 => ItemFactory::get(Item::GLASS_PANE),
+
+                        ]);
+
+
+                    }
                     $colore = $this->getConfig()->get("Color");
                     $nome = $this->getConfig()->get("Name");
                     $menu->send($sender, constant(TextFormat::class . "::" . strtoupper($colore)) . $nome . " "  . $sender->getName());
                     $sender->getLevel()->broadcastLevelEvent($sender, LevelEventPacket::EVENT_SOUND_ANVIL_USE, (int)100);
                     $menu->setListener(function(Player $player, Item $itemClicked, Item $itemClickedWith, SlotChangeAction $action) :bool {
-                        if($action->getSlot() <= 9 or $action->getSlot() >= 17) {
+                        if($action->getSlot() <= 9 or in_array($action->getSlot(), [17, 18, 26, 27]) or $action->getSlot() >= 44 and $action->getSlot() <= 53) {
                             return false;
-                        }else{
+                            }else{
                             return true;
                         }
 
                     });
                 }
+                return true;
         }
-        return true;
-    }
-}
 
+    }
