@@ -58,7 +58,7 @@ class Main extends PluginBase implements Listener {
                     $nome = $this->getConfig()->get("Name");
                     $menu->send($sender, constant(TextFormat::class . "::" . strtoupper($colore)) . $nome . " "  . $sender->getName());
                     $sender->getLevel()->broadcastLevelEvent($sender, LevelEventPacket::EVENT_SOUND_ANVIL_USE, (int)100);
-                    $menu->setListener(function(SlotChangeAction $action): bool {
+                    $menu->setListener(function(Player $player, Item $itemClicked, Item $itemClickedWith, SlotChangeAction $action) :bool {
                         if($action->getSlot() <= 9 or $action->getSlot() >= 17) {
                             return false;
                         }else{
