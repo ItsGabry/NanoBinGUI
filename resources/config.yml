@@ -20,3 +20,6 @@ Name: Cestino di
 #	WHITE
 #       BLACK
 Color: RED
+#Choose whether to keep the aesthetic glasses on/off
+#Scegli se tenere i vetri d'estetica on/off
+Glasses: on
