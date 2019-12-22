@@ -71,8 +71,9 @@ class Main extends PluginBase implements Listener {
                 $nome = $this->getConfig()->get("Name");
                 $menu->send($sender, constant(TextFormat::class . "::" . strtoupper($colore)) . $nome . " " . $sender->getName());
                 $sender->getLevel()->broadcastLevelEvent($sender, LevelEventPacket::EVENT_SOUND_ANVIL_USE, (int)100);
+
                 $menu->setListener(function (Player $player, Item $itemClicked, Item $itemClickedWith, SlotChangeAction $action): bool {
-                    if ($action->getSlot() <= 9 or in_array($action->getSlot(), [17, 18, 26, 27]) or $action->getSlot() >= 44 and $action->getSlot() <= 53 and $this->getConfig()->get("Glasses")=="on") {
+                    if (in_array($action->getSlot(), [0,1,2,3,4,5,6,7,8,9,17, 18, 26, 27,35,36,44,45,46,47,48,49,50,51,52,53]) and $this->getConfig()->get("Glasses")=="on") {
                         return false;
                     } else {
                         return true;
@@ -85,3 +86,4 @@ class Main extends PluginBase implements Listener {
 
 
 }
+
