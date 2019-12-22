@@ -31,7 +31,8 @@ class Main extends PluginBase implements Listener {
         switch (strtolower($command->getName())) {
             case "bin":
                 if ($sender instanceof Player) {
-                        $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+                    $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+                    if ($this->getConfig()->get("Glasses") == "on") {
                         $menu->getInventory()->setContents([
                             0 => ItemFactory::get(Item::GLASS_PANE),
                             1 => ItemFactory::get(Item::GLASS_PANE),
@@ -61,23 +62,26 @@ class Main extends PluginBase implements Listener {
                             53 => ItemFactory::get(Item::GLASS_PANE),
 
                         ]);
-
-
+                    } elseif ($this->getConfig()->get("Glasses") == "off") {
+                        $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
                     }
-                    $colore = $this->getConfig()->get("Color");
-                    $nome = $this->getConfig()->get("Name");
-                    $menu->send($sender, constant(TextFormat::class . "::" . strtoupper($colore)) . $nome . " "  . $sender->getName());
-                    $sender->getLevel()->broadcastLevelEvent($sender, LevelEventPacket::EVENT_SOUND_ANVIL_USE, (int)100);
-                    $menu->setListener(function(Player $player, Item $itemClicked, Item $itemClickedWith, SlotChangeAction $action) :bool {
-                        if($action->getSlot() <= 9 or in_array($action->getSlot(), [17, 18, 26, 27]) or $action->getSlot() >= 44 and $action->getSlot() <= 53) {
-                            return false;
-                            }else{
-                            return true;
-                        }
 
-                    });
                 }
-                return true;
-        }
+                $colore = $this->getConfig()->get("Color");
+                $nome = $this->getConfig()->get("Name");
+                $menu->send($sender, constant(TextFormat::class . "::" . strtoupper($colore)) . $nome . " " . $sender->getName());
+                $sender->getLevel()->broadcastLevelEvent($sender, LevelEventPacket::EVENT_SOUND_ANVIL_USE, (int)100);
+                $menu->setListener(function (Player $player, Item $itemClicked, Item $itemClickedWith, SlotChangeAction $action): bool {
+                    if ($action->getSlot() <= 9 or in_array($action->getSlot(), [17, 18, 26, 27]) or $action->getSlot() >= 44 and $action->getSlot() <= 53) {
+                        return false;
+                    } else {
+                        return true;
+                    }
 
+                });
+        }
+        return true;
     }
+
+
+}
